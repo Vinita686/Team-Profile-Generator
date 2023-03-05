@@ -9,7 +9,35 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+const { type } = require("os");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
-
+inquirer.prompt = ([
+    {
+        type: "input",
+        message: "Please provide Team Managers's Name.",
+        title: "name",
+    },
+    {
+        type: "input",
+        message: "Team Manager's Employee Id?",
+        title: "id",
+    },
+    {
+        type: "input",
+        message: "Team Manager's Email Address?",
+        title: "email",
+    },
+    {
+        type: "input",
+        message: "Team Manager's Office number?",
+        title: "number",
+    },
+    {
+        type: "list",
+        message: "Please choose one of the below Options.",
+        choices: ["Add an Engineer", "Add an Intern", "Finish building the Team"],
+        title: "options",
+    }
+])
