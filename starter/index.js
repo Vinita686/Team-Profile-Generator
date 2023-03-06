@@ -11,24 +11,54 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 const { type } = require("os");
 
+// TODO: Write Code to gather information about the development team members, and render the HTML file.
+
+// Create an empty array to store all employee objects
 const employeeArray = [];
 
+// Create a function to gather information to pass to Engineer class
 function addEngineer() {
-
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter the Name of Engineer.",
+            name: "name",
+        },
+        {
+            type: "input",
+            message: "Enter ID of Engineer.",
+            name: "id",
+        },
+        {
+            type: "input",
+            message: "Enter email of Engineer.",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "Enter GitHub username of Engineer.",
+            name: "github"
+        }
+    ]).then(response => {
+        const newEngineer = new Engineer(response.name, response.id, response.email, response.github)
+        employeeArray.push(newEngineer)
+        createTeam();
+    })
 }
 
+// Function to provide menu options to user to add to team.
 function createTeam() {
     inquirer.prompt([
         {
       type: "list",
-      message: "Please choose one of the below Options.",
+      message: "Please choose from the below menu Options to make your Team.",
       choices: ["Add an Engineer", "Add an Intern", "Finish building the Team"],
       name: "options",
     }
     ]).then(response => {
-        switch(response.options) {
+            switch(response.options) {
             case "Add an Engineer":
-            // addEngineer()
+            addEngineer()
             break;
             case "Add an Intern":
                 // addIntern()
@@ -37,7 +67,8 @@ function createTeam() {
         }
     })
 }
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+
+// Function to gather info and pass to Manager class. 
 function createManager() {
 
   inquirer.prompt([
