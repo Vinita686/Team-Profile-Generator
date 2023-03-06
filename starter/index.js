@@ -106,7 +106,7 @@ function createTeam() {
         case "Add an Intern":
           addIntern()
           break;
-        // default: teamBuilder()
+        default: teamBuilder()
       }
     });
 }
@@ -150,11 +150,18 @@ function createManager() {
     });
 }
 
+// function to make the html file using render function
 function teamBuilder() {
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR);
   }
-  fs.writeFileSync(outputPath, render(employeeArray), "utf-8");
+  fs.writeFileSync(outputPath, render(employeeArray), (err) => 
+    err ? console.error(err) : console.info("Success!")
+  );
 }
 
+// function to initialize the application
+function init() {
 createManager();
+}
+init()
