@@ -55,32 +55,39 @@ function addEngineer() {
 
 // Function to gather info and pass to Intern class
 function addIntern() {
-  inquirer.prompt([
-    {
-      type: "input",
-      message: "Enter Name of the Intern.",
-      name: "name",
-    },
-    {
-      type: "input",
-      message: "Enter ID of the Intern.",
-      name: "id",
-    },
-    {
-      type: "input",
-      message: "Enter Email of the Intern.",
-      name: "email",
-    },
-    {
+  inquirer
+    .prompt([
+      {
         type: "input",
-      message: "Enter School of the Intern.",
-      name: "school",
-    }
-  ]).then(response => {
-    const newIntern = new Intern(response.name, response.id, response.email, response.school)
-    employeeArray.push(newIntern)
-    createTeam()
-  })
+        message: "Enter Name of the Intern.",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Enter ID of the Intern.",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Enter Email of the Intern.",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "Enter School of the Intern.",
+        name: "school",
+      },
+    ])
+    .then((response) => {
+      const newIntern = new Intern(
+        response.name,
+        response.id,
+        response.email,
+        response.school
+      );
+      employeeArray.push(newIntern);
+      createTeam();
+    });
 }
 
 // Function to provide menu options to user to add employee to team.
@@ -104,9 +111,10 @@ function createTeam() {
           addEngineer();
           break;
         case "Add an Intern":
-          addIntern()
+          addIntern();
           break;
-        default: teamBuilder()
+        default:
+          teamBuilder();
       }
     });
 }
@@ -137,7 +145,6 @@ function createManager() {
       },
     ])
     .then((response) => {
-      console.log(response);
       const newManager = new Manager(
         response.name,
         response.id,
@@ -145,7 +152,7 @@ function createManager() {
         response.number
       );
       employeeArray.push(newManager);
-      console.log(employeeArray);
+      //   console.log(employeeArray);
       createTeam();
     });
 }
@@ -155,13 +162,13 @@ function teamBuilder() {
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR);
   }
-  fs.writeFileSync(outputPath, render(employeeArray), (err) => 
+  fs.writeFileSync(outputPath, render(employeeArray), (err) =>
     err ? console.error(err) : console.info("Success!")
   );
 }
 
 // function to initialize the application
 function init() {
-createManager();
+  createManager();
 }
-init()
+init();
