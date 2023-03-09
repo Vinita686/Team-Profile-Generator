@@ -23,7 +23,6 @@
   
   ### Mock-Up
   ![Screenshot](./assets/output_team.html.png)
-
   ## Contributing
   All contributions are welcome.
 
