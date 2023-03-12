@@ -21,6 +21,12 @@ function validateName(name) {
   return name.trim().match(letters) ? true : "Invalid input!"
 }
 
+// Function for Number validation
+function validateNumber(num) {
+  const numbers = /^[0-9]+$/;
+  return num.match(numbers) ? true : "Enter Numerics only!" 
+}
+
 
 // Create an empty array to store all employee objects
 const employeeArray = [];
@@ -39,6 +45,7 @@ function addEngineer() {
         type: "input",
         message: "Enter ID of Engineer.",
         name: "id",
+        validate: validateNumber,
       },
       {
         type: "input",
@@ -78,6 +85,7 @@ function addIntern() {
         type: "input",
         message: "Enter ID of the Intern.",
         name: "id",
+        validate: validateNumber,
       },
       {
         type: "input",
@@ -145,6 +153,7 @@ function createManager() {
         type: "input",
         message: "Team Manager's Employee Id?",
         name: "id",
+        validate: validateNumber,
       },
       {
         type: "input",
@@ -155,6 +164,7 @@ function createManager() {
         type: "input",
         message: "Team Manager's Office number?",
         name: "number",
+        validate: validateNumber,
       },
     ])
     .then((response) => {
