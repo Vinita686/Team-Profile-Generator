@@ -27,6 +27,11 @@ function validateNumber(num) {
   return num.match(numbers) ? true : "Enter Numerics only!" 
 }
 
+// Function for Email validation
+function emailValidator(email) {
+  const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return email.match(mailFormat) ? true : "Invalid Email type!"
+}
 
 // Create an empty array to store all employee objects
 const employeeArray = [];
@@ -51,6 +56,7 @@ function addEngineer() {
         type: "input",
         message: "Enter email of Engineer.",
         name: "email",
+        validate: emailValidator,
     
       },
       {
@@ -91,6 +97,7 @@ function addIntern() {
         type: "input",
         message: "Enter Email of the Intern.",
         name: "email",
+        validate: emailValidator,
       },
       {
         type: "input",
@@ -159,6 +166,7 @@ function createManager() {
         type: "input",
         message: "Team Manager's Email Address?",
         name: "email",
+        validate: emailValidator,
       },
       {
         type: "input",
