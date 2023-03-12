@@ -33,6 +33,7 @@ function emailValidator(email) {
   return email.match(mailFormat) ? true : "Invalid Email type!"
 }
 
+
 // Create an empty array to store all employee objects
 const employeeArray = [];
 
