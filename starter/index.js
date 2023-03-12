@@ -13,6 +13,15 @@ const { type } = require("os");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+//*------------ input validation functions ----------------------*//
+
+// Function for name validation
+function validateName(name) {
+  const letters = /^[A-Za-z]+$/;
+  return name.trim().match(letters) ? true : "Invalid input!"
+}
+
+
 // Create an empty array to store all employee objects
 const employeeArray = [];
 
@@ -24,6 +33,7 @@ function addEngineer() {
         type: "input",
         message: "Enter the Name of Engineer.",
         name: "name",
+        validate: validateName,
       },
       {
         type: "input",
@@ -34,6 +44,7 @@ function addEngineer() {
         type: "input",
         message: "Enter email of Engineer.",
         name: "email",
+    
       },
       {
         type: "input",
@@ -61,6 +72,7 @@ function addIntern() {
         type: "input",
         message: "Enter Name of the Intern.",
         name: "name",
+        validate: validateName,
       },
       {
         type: "input",
@@ -127,6 +139,7 @@ function createManager() {
         type: "input",
         message: "Please provide Team Managers's Name.",
         name: "name",
+        validate: validateName,
       },
       {
         type: "input",
